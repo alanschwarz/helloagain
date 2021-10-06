@@ -1,0 +1,1 @@
+export const COLLECT_REWARD = 'COLLECT_REWARD';
