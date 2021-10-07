@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, SafeAreaView, ActivityIndicator, View, Text } from "react-native";
-import styles from "./styles";
-// import data from './data';
+import styles from "./App.styles";
 import DataItem from './components/DataItem';
 import { useSelector } from 'react-redux';
-import { RootState } from './store';
-
-const API_ENDPOINT =
-    "https://staging.helloagain.at/api/v1/clients/5189/bounties/";
-
+import { RootState } from './store/store';
+import fetchData from './services/bountieService';
 
 const App = () => {
     const [data, setData] = useState();
@@ -16,22 +12,12 @@ const App = () => {
 
     const collectedRewards = useSelector((state: RootState) => state.rewardsReducer.collectedRewards);
 
-    console.log(collectedRewards);
-
-    const fetchData = async () => {
-        try {
-            const response = await fetch(API_ENDPOINT);
-            const data = await response.json();
-            console.log(data);
+    useEffect(() => {
+        (async () => {
+            const data = await fetchData();
             setData(data);
             setLoading(false);
-        } catch (error) {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchData();
+        })();
     }, []);
 
     const renderItem = ({ item }: any) => (
@@ -49,7 +35,7 @@ const App = () => {
                     data={data}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
-                    ListFooterComponent={<View style={{height: 150}}/>}
+                    ListFooterComponent={<View style={{ height: 150 }} />}
                 />
             </SafeAreaView>
             <View style={styles.floatingBubble}>

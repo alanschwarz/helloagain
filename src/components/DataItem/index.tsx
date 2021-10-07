@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Text, View, Image, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
 import styles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
-import { collectReward } from '../../actions/actions';
-import {RootState} from '../../store';
+import { collectReward } from '../../store/actions/actions';
+import {RootState} from '../../store/store';
 
 interface DataItemProps {
     title: string;
