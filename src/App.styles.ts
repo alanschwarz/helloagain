@@ -17,6 +17,10 @@ export default StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#edbb64',
         elevation: 10,
+        shadowColor: 'rgba(0,0,0,0.3)',
+        shadowOffset: { width: 3, height: 3 },
+        shadowOpacity: 1,
+        shadowRadius: 10,
     },
     floatingBubbleText: {
         color: 'white',
